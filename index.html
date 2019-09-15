@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      .page {
+        display: none;
+      }
+      .home-page {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <span onclick="changePage('home')">home</span> |
+      <span onclick="changePage('list')">list</span> |
+      <span onclick="changePage('about')">about</span>
+    </nav>
+    <div class="page home-page">I am homepage</div>
+    <div class="page list-page">I am list</div>
+    <div class="page about-page">About me </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script>
+
+    // 非常粗糙的初始化，請勿使用在 production
+    if (location.href.indexOf('/home') >=0 ) {
+      changePage('home')
+    } else if (location.href.indexOf('/list') >= 0) {
+      changePage('list')
+    } else if (location.href.indexOf('/about') >= 0) {
+      changePage('about')
+    }
+
+    function changePage(page) {
+      $('.page').hide()
+      if (page === 'home') {
+        $('.home-page').show()
+      } else if (page === 'list') {
+        $('.list-page').show()
+      } else if (page === 'about') {
+        $('.about-page').show()
+      }
+
+      // 精華所在
+      history.pushState(null, null, page)
+    }
+
+  </script>
+</html>
+
